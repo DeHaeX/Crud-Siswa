@@ -4,7 +4,7 @@
   "version": "0.7.0",
   "license": "MIT",
   "main": "./dist/index.js",
-  "homepage": "https://github.com/juicyfx/vercel-php",
+  "homepage": "https://github.com/DeHaeX/Crud-Siswa",
   "repository": {
     "type": "git",
     "url": "https://github.com/DeHaeX/Crud-Siswa.git"

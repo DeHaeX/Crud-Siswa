@@ -7,7 +7,7 @@ $password = '';
 
 $pdo = new PDO($dsn, $username, $password);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-if(isset($_GET['username']) && isset($_GET['password']) && isset($_SESSION['status']) == null && isset($_GET['validasi'])){
+if(isset($_GET['username']) && isset($_GET['password']) && isset($_SESSION['status']) == null){
     $safePass = md5($_GET['password']);
     try {
         $doLogin = $pdo->prepare('SELECT * FROM tb_user WHERE username = :username and password = :password');
@@ -16,7 +16,7 @@ if(isset($_GET['username']) && isset($_GET['password']) && isset($_SESSION['stat
         $doLogin->execute();
         $row = $doLogin->rowCount();
 
-        if($row > 0 && $_GET["validasi"] == "crud_akbar_tkjclub"){
+        if($row > 0){
             echo json_encode([
                 'status' => 'success',
                 'text' => 'Login Berhasil'

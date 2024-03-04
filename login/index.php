@@ -58,8 +58,6 @@ if(isset($_SESSION['status'])){
                 <div class='text-danger' id="error3"><i class="bi bi-x-circle me-2"></i>Must include a symbol</div>
                 <div class='text-danger' id='error4'><i class="bi bi-x-circle me-2"></i>Must include a number</div>
                 <!-- </ul> -->
-                <label for="validasi">Masukkan Kode Validasi :</label>
-                <input type="text" placeholder="Kode Validasi..." class="form-class" id="validasi">
                 <button type="submit" onclick="registerUser()" name='register' value="Register" id='register' class="btn btn-warning w-100 mt-4">Register</button>
           </div>
         </div>
@@ -80,7 +78,7 @@ if(isset($_SESSION['status'])){
             status = 1;
             loginText.classList.toggle('d-none')
             loginSpin.classList.toggle('d-none')
-            fetch('api/?username=' + usernameInput.value + '&password=' + password.value+"&validasi="+validasi.value)
+            fetch('api/?username=' + usernameInput.value + '&password=' + password.value)
             .then(response => response.json())
             .then(data => {
                 if(data.status == 'success'){

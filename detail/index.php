@@ -37,10 +37,9 @@
     <div class="container mt-5">
       <div class="d-flex">
         <a href="/add" class="btn btn-primary w-50 p-2 mb-2">Tambah Siswa</a>
-        <form method="get" class="d-flex ms-2 mb-2">
-          <input type="text" name="q" id="" class="form-control" value="<?= (isset($_GET['q'])) ? $_GET['q'] : '' ?>" placeholder="Cari Siswa...">
-          <button class="btn btn-outline-success ms-1"><i class="bi bi-search"></i></button>
-        </form>
+        <div class="d-flex ms-2 mb-2">
+          <input onkeyup="liveSearch(this)" type="text" name="q" id="" class="form-control" value="<?= (isset($_GET['q'])) ? $_GET['q'] : '' ?>" placeholder="Cari Siswa...">
+        </div>
       </div>
       <table class="table table-bordered">
         <thead class="bg-dark text-white">
@@ -216,6 +215,14 @@
     let query = <?= (isset($_GET['q'])) ? $_GET['q'] : 'false;' ?>
 
     let idPilihan = 'sel' + pilihan;
+    function liveSearch(param) {
+  if (input.trim() !== '') {
+    // Mengganti URL pada baris di bawah ini
+    window.history.replaceState({}, '', '?q=' + param.value);
+  } else {
+    window.history.replaceState({}, '', '/');
+  }
+    }
     function pagi(param) {
       if (param !== 'default' && param !== '99999999') {
         window.location = '/detail?show=' + param + <?php if (isset($_GET['page'])) {echo '"&page=' . $_GET['page'] . '"';} else {echo "''";} ?> + <?php if (isset($_GET['q'])) {echo '"&q=' . $_GET['q'] . '"';} else {echo "''";} ?>
